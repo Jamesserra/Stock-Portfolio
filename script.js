@@ -54,20 +54,42 @@ $(document).ready(function() {
     updateValueAndProfit();
   });
 
-  $('.btn.remove').on('click', function(event) {
+  $(document).on('click', '.btn.remove', function (event) {
     $(this).closest('tr').remove();
     updateValueAndProfit();
   });
     
-  $('tr input').on('input', function() {
-   updateValueAndProfit();
+  let timeout;
+  $(document).on('input', 'tr input', function () {
+    clearTimeout(timeout);
+    timeout = setTimeout(function () {
+      updateValueAndProfit();
+    }, 1000);
+  });
+  
+
+  $('#addStock').on('submit', function(event) {
+    event.preventDefault();
+    let name = $(this).children('[name=name]').val();
+    let shares = $(this).children('[name=shares]').val();
+    let cost = $(this).children('[name=cost]').val();
+    let marketPrice = $(this).children('[name=marketPrice]').val();
+
+    $('tbody').append('<tr>' +
+    '<td class="name">' + name + '</td>' + 
+    '<td class="shares"><input type="number" value="' + shares + '"/></td>' +
+    '<td class="cost"><input type="number" value="' + cost + '"/></td>' +
+    '<td class="marketPrice"><input type="number" value="' + marketPrice + '"/></td>' +
+    '<td class="marketValue"></td>' +
+    '<td class="profit"></td>' +
+    '<td><button class="btn btns-light btn-sm remove">remove</button></td>' + 
+    '</tr>');
+
+    updateValueAndProfit();
+    $(this).children('[name=name]').val('');
+    $(this).children('[name=shares]').val('');
+    $(this).children('[name=cost]').val('');
+    $(this).children('[name=marketPrice]').val('');
    });
 });
 
-let timeout;
-$('tr input').on('input', function() {
-  clearTimeout(timeout);
-  timeout = setTimeout(function() {
-    updateValueAndProfit();
-  }, 1000);
-});

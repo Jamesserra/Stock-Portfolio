@@ -57,6 +57,15 @@
             </tbody>
           </table>
         </div>
+
+        <form class="col-12 mt-2 mb-4" id="addStock">
+          <input class="mx-2" name="name" type="text" placeholder="Name" required/>
+          <input class="mx-2" name="shares" type="number" placeholder="Shares" />
+          <input class="mx-2" name="cost" type="number" placeholder="Cost" />
+          <input class="mx-2" name="marketPrice" type="number" placeholder="Price" />
+          <button class="btn mb-1 btn-primary btn-sm">Add</button>
+        </form>
+
         <div class="col-12 col-md-6">
           <h3>Portfolio value: $ <span id="portfolioValue"></span></h3>
         </div>
@@ -64,6 +73,8 @@
           <h3>Portfolio Gain/Loss: $ <span id="portfolioProfit"></span></h3>
         </div>
       </div>
+
+      
     </div>
   </body>
 </html>
